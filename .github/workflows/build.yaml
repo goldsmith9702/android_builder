@@ -16,7 +16,7 @@ jobs:
           distribution: 'adopt'
       - id: get-project
         name: Get project name
-        run: echo "::set-output name=PROJECT::$(cat project-to-build)"
+        run: echo "PROJECT=$(cat project-to-build)" >> $GITHUB_ENV
       - name: Clone project
         run: git clone --depth=1 $PROJECT project
         env:
