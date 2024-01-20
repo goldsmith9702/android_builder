@@ -17,9 +17,8 @@ jobs:
       - id: get-project
         name: Get project name
         run: |
-          PROJECT=$(cat project-to-build)
-          echo "PROJECT=$PROJECT" >> $GITHUB_ENV
-          echo "Contents of project-to-build: $(cat project-to-build)"
+          PROJECT_URL=$(cat project-to-build)
+          echo "::set-output name=PROJECT::${PROJECT_URL}"
       - name: Clone project
         run: git clone --depth=1 $PROJECT project
         env:
