@@ -14,6 +14,16 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+
+      - name: Generate Gradle Wrapper
+        run: |
+          # Check if gradlew exists, and if not, generate it
+          if [ ! -f "gradlew" ]; then
+            ./gradle wrapper
+          fi
+          
+          # Ensure gradlew has execute permissions
+          chmod +x gradlew
       - id: get-project
         name: Get project name
         run: |
