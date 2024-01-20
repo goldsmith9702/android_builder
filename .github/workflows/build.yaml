@@ -18,11 +18,11 @@ jobs:
         name: Get project name
         run: |
           PROJECT_URL=$(cat project-to-build)
-          echo "::set-output name=PROJECT::${PROJECT_URL}"
+          echo "PROJECT_URL=${PROJECT_URL}" >> $GITHUB_ENV
       - name: Clone project
-        run: git clone --depth=1 $PROJECT project
+        run: git clone --depth=1 $PROJECT_URL project
         env:
-          PROJECT: ${{ steps.get-project.outputs.PROJECT }}
+          PROJECT_URL: ${{ env.PROJECT_URL }}
       - name: Build the app
         working-directory: ./project
         run: |
